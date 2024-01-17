@@ -1,14 +1,16 @@
 package com.javiervillaverde.proyectokotlin
 
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.javiervillaverde.proyectokotlin.databinding.FragmentDetalleBinding
 
 class DetalleFragment : Fragment(R.layout.fragment_detalle) {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

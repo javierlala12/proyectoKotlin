@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_favoritos"
+        android:icon="@drawable/favoritos"
+        android:title="favoritos" />
+    <item
+        android:id="@+id/navigation_buscar"
+        android:icon="@drawable/lupita"
+        android:title="buscador" />
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/icono_barra"
+        android:title="home" />
+    <item
+        android:id="@+id/navigation_mis_recetas"
+        android:icon="@drawable/mis_recetas"
+        android:title="mis recetas" />
+    <item
+        android:id="@+id/navigation_perfil"
+        android:icon="@drawable/usuario"
+        android:title="Usuario" />
+
+</menu>
