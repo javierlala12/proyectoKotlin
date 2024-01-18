@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ListaFragment">
+    tools:context=".FavoritosFragment">
 
     <TextView
         android:id="@+id/titulo"
         style="@style/fuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:text="Mis recetas"
+        android:text="Mis recetas favoritas"
         android:textColor="@color/colorOnPrimary"
         android:textSize="32sp"
         android:layout_alignParentTop="true"
@@ -24,23 +23,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="692dp"
+        android:layout_height="0dp"
         android:layout_below="@id/titulo"
-        android:layout_margin="0dp"
         android:background="@color/colorPrimary"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorAccent"
-        android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

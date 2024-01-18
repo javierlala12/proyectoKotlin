@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_favoritos"
+        android:id="@+id/favoritosFragment"
         android:icon="@drawable/favoritos"
         android:title="favoritos" />
     <item
@@ -13,7 +13,7 @@
         android:icon="@drawable/icono_barra"
         android:title="home" />
     <item
-        android:id="@+id/navigation_mis_recetas"
+        android:id="@+id/listaFragment"
         android:icon="@drawable/mis_recetas"
         android:title="mis recetas" />
     <item

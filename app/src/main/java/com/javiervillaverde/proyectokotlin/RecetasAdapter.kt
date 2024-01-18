@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.javiervillaverde.proyectokotlin.databinding.ViewTareaBinding
+import com.javiervillaverde.proyectokotlin.databinding.ViewRecetasBinding
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -19,7 +19,7 @@ class RecetasAdapter(
 ) : RecyclerView.Adapter<RecetasAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val binding = ViewTareaBinding.bind(view)
+        val binding = ViewRecetasBinding.bind(view)
 
         fun bind(receta: Receta) {
             binding.nombre.text = receta.nombre
@@ -49,7 +49,7 @@ class RecetasAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_tarea, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_recetas, parent, false)
         return ViewHolder(view)
     }
 
