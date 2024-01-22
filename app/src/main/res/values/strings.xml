@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">proyectoKotlin</string>
+    <string name="app_name">Deliciapp</string>
+    <string name="default_web_client_id" />
+    <string name="register_prompt">Registrar</string>
+    <string name="google_sign_in">Iniciar sesion con google</string>
+    <string name="forgot_password">¿Olvidaste la contraseña?</string>
+    <string name="login_button">Iniciar sesion</string>
+    <string name="password_hint">Introduce tu contraseña</string>
+    <string name="email_hint">Introduce tu email</string>
+    <string name="sign_out">Cerrar sesion</string>
+    <string name="footer_text">By Javier Villaverde Vicente </string>
+    <string name="olvidaste_tu_contrase_a">¿Olvidaste tu contraseña?</string>
+    <string name="correo_electr_nico">Correo Electrónico</string>
+    <string name="recupera_contrase_a">Recupera Contraseña</string>
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="ya_tienes_cuenta_prompt">Ya tienes cuenta. Inicia Sesión</string>
 </resources>

@@ -1,5 +1,6 @@
-package com.javiervillaverde.proyectokotlin
+package com.javiervillaverde.proyectokotlin.ui
 
+import com.javiervillaverde.proyectokotlin.model.Receta
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

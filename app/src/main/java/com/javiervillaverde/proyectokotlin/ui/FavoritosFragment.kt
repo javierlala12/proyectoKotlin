@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin
+package com.javiervillaverde.proyectokotlin.ui
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.javiervillaverde.proyectokotlin.R
 import com.javiervillaverde.proyectokotlin.databinding.FragmentFavoritosBinding
 
 class FavoritosFragment : Fragment(R.layout.fragment_favoritos) {

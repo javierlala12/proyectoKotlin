@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin
+package com.javiervillaverde.proyectokotlin.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import com.javiervillaverde.proyectokotlin.databinding.ViewRecetasFavoritasBindi
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
+import com.javiervillaverde.proyectokotlin.model.Receta
 
 // Asegúrate de que la clase RecetasAdapterFavoritos tenga los parámetros correctos
 class RecetasAdapterFavoritos(

@@ -12,7 +12,7 @@
         style="@style/fuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mis recetas favoritas"
+        android:text="Busqueda"
         android:textColor="@color/colorOnPrimary"
         android:textSize="32sp"
         android:layout_alignParentTop="true"

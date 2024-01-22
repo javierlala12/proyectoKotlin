@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin
+package com.javiervillaverde.proyectokotlin.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 

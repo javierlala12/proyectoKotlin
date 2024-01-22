@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin
+package com.javiervillaverde.proyectokotlin.ui
 
 
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.javiervillaverde.proyectokotlin.R
+import com.javiervillaverde.proyectokotlin.model.Receta
 import com.javiervillaverde.proyectokotlin.databinding.FragmentDetalleBinding
 
 class DetalleFragment : Fragment(R.layout.fragment_detalle) {

@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin
+package com.javiervillaverde.proyectokotlin.ui
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.javiervillaverde.proyectokotlin.R
 import com.javiervillaverde.proyectokotlin.databinding.FragmentListaBinding
 import kotlinx.coroutines.launch
 

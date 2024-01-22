@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin
+package com.javiervillaverde.proyectokotlin.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.javiervillaverde.proyectokotlin.databinding.ViewRecetasBinding
 import com.bumptech.glide.Glide
+import com.javiervillaverde.proyectokotlin.R
+import com.javiervillaverde.proyectokotlin.model.Receta
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

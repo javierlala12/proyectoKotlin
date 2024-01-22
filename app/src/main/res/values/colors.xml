@@ -6,4 +6,10 @@
     <color name="colorPrimaryVariant">#F4CE14</color>
     <color name="colorOnPrimary">#495E57</color>
     <color name="colorAccent">#8C8C8C</color>
+    <color name="inicioSesion">#181818</color>
+
+    <color name="Azul1">#161A30</color>
+    <color name="Azul2">#31304D</color>
+    <color name="gris1">#B6BBC4</color>
+    <color name="crema1">#CFD8F0</color>
 </resources>

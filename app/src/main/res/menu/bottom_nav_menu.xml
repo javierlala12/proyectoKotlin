@@ -3,22 +3,22 @@
     <item
         android:id="@+id/favoritosFragment"
         android:icon="@drawable/favoritos"
-        android:title="favoritos" />
+        android:title="Favoritos" />
     <item
-        android:id="@+id/navigation_buscar"
+        android:id="@+id/buscadorFragment"
         android:icon="@drawable/lupita"
-        android:title="buscador" />
+        android:title="Buscador" />
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/icono_barra"
-        android:title="home" />
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/logo_sin_fondo1"
+        android:title="Home" />
     <item
         android:id="@+id/listaFragment"
         android:icon="@drawable/mis_recetas"
-        android:title="mis recetas" />
+        android:title="Mis Recetas" />
     <item
-        android:id="@+id/navigation_perfil"
+        android:id="@+id/perfilFragment"
         android:icon="@drawable/usuario"
-        android:title="Usuario" />
+        android:title="Mi Perfil" />
 
 </menu>
