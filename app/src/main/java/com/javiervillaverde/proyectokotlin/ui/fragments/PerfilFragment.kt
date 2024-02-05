@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin.ui
+package com.javiervillaverde.proyectokotlin.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle

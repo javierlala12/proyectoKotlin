@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="8dp"
     android:background="@color/Azul1"
-    tools:context=".ui.RecuperaContrasena">
+    tools:context=".ui.adapters.RecuperaContrasena">
 
     <TextView
         android:id="@+id/textView"

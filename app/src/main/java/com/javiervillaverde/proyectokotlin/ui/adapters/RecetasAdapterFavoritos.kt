@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin.ui
+package com.javiervillaverde.proyectokotlin.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,8 @@ import com.javiervillaverde.proyectokotlin.databinding.ViewRecetasFavoritasBindi
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import androidx.lifecycle.lifecycleScope
-import com.javiervillaverde.proyectokotlin.model.Receta
+import com.javiervillaverde.proyectokotlin.models.Receta
+import com.javiervillaverde.proyectokotlin.ui.fragments.FavoritosFragment
 
 // Asegúrate de que la clase RecetasAdapterFavoritos tenga los parámetros correctos
 class RecetasAdapterFavoritos(
@@ -19,13 +20,13 @@ class RecetasAdapterFavoritos(
     inner class ViewHolder(private val binding: ViewRecetasFavoritasBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(receta: Receta) {
-            binding.nombre.text = receta.nombre
+            binding.nombre.text = receta.tituloReceta
             binding.root.setOnClickListener { listener(receta) }
 
             // Usar lifecycleScope del Fragmento para cargar imágenes
             context.lifecycleScope.launch {
                 Glide.with(context.requireContext())
-                    .load(receta.imageUrl)
+                    .load(receta.urlImagen)
                     .into(binding.imagenTarea)
             }
         }

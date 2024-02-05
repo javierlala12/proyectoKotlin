@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin.ui
+package com.javiervillaverde.proyectokotlin.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +13,9 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.javiervillaverde.proyectokotlin.core.AuthManager
 import com.javiervillaverde.proyectokotlin.core.AuthRes
 import com.javiervillaverde.proyectokotlin.databinding.ActivityLoginBinding
+import com.javiervillaverde.proyectokotlin.ui.activities.CrearCuenta
+import com.javiervillaverde.proyectokotlin.ui.activities.MainActivity
+import com.javiervillaverde.proyectokotlin.ui.adapters.RecuperaContrasena
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {

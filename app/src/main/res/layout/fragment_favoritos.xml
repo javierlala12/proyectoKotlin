@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.FavoritosFragment">
+    tools:context=".ui.fragments.FavoritosFragment">
 
     <TextView
         android:id="@+id/titulo"
@@ -17,7 +17,7 @@
         android:textSize="32sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp" />
 
     <androidx.recyclerview.widget.RecyclerView

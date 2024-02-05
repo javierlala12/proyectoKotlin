@@ -1,4 +1,4 @@
-package com.javiervillaverde.proyectokotlin.ui
+package com.javiervillaverde.proyectokotlin.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment

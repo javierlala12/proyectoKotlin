@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.ListaFragment">
+    tools:context=".ui.fragments.ListaFragment">
 
     <TextView
         android:id="@+id/titulo"
         style="@style/fuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:text="Mis recetas"
+        android:layout_margin="10dp"
+        android:text=" Mis recetas"
         android:textColor="@color/colorOnPrimary"
         android:textSize="32sp"
         android:layout_alignParentTop="true"
@@ -26,7 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="692dp"
         android:layout_below="@id/titulo"
-        android:layout_margin="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         android:background="@color/colorPrimary"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
