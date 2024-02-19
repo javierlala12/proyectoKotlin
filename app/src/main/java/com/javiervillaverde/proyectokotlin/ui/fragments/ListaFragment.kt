@@ -21,7 +21,11 @@ class ListaFragment : Fragment() {
 
     private lateinit var firestoreManager: FirestoreManager
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentListaBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,22 +36,18 @@ class ListaFragment : Fragment() {
         setupRecyclerView()
         loadRecetasFromFirestore()
 
-        // Configura el listener para el botón de añadir nueva receta
         binding.floatingActionButton.setOnClickListener {
             navigateToAddNewReceta()
         }
     }
 
     private fun setupRecyclerView() {
-        // Inicializa el adaptador con callbacks vacíos o con acciones específicas
         val recetasAdapter = RecetasAdapter(
             emptyList(),
             onRecetaClicked = { recetaId ->
-                // Aquí puedes implementar la acción al hacer clic en una receta
-                /**navigateToRecetaDetalle(recetaId)*/
+                navigateToRecetaDetalle(recetaId)
             },
             onModificarClicked = { recetaId ->
-                // Aquí puedes implementar la acción al hacer clic en modificar
                 navigateToModificarReceta(recetaId)
             },
             onBorrarClicked = { recetaId ->
@@ -60,6 +60,10 @@ class ListaFragment : Fragment() {
             adapter = recetasAdapter
         }
     }
+    /**
+     * Carga las recetas del usuario desde Firestore
+     * Estas recetas en autor tienen que tener el mismo id del usuario
+     */
 
     private fun loadRecetasFromFirestore() {
         firestoreManager.getUserId()?.let { userId ->
@@ -72,41 +76,60 @@ class ListaFragment : Fragment() {
             }
         }
     }
+    /**
+     * Navega a la pantalla de modificar receta
+     *@param recetaId pasa el id de la receta como argumento
+     * Este metodo se ejecuta al pulsar el boton de modificar
+     */
+
     private fun navigateToModificarReceta(recetaId: String) {
         val bundle = Bundle().apply {
             putString("recetaId", recetaId)
         }
         findNavController().navigate(R.id.action_listaFragment_to_modificarFragment, bundle)
     }
-
-
+    /**
+     * Navega a la pantalla de detalle receta
+     *@param recetaId pasa el id de la receta como argumento
+     * Este metodo se ejecuta al pulsar una receta
+     */
     private fun navigateToRecetaDetalle(recetaId: String) {
         val bundle = Bundle().apply {
             putString("recetaId", recetaId)
         }
         findNavController().navigate(R.id.action_listaFragment_to_detalleFragment, bundle)
     }
-
+    /**
+     * Navega a la pantalla de agregar nueva receta
+     * Este metodo se ejecuta al pulsar el floatingActionButton
+     */
     private fun navigateToAddNewReceta() {
         findNavController().navigate(R.id.action_listaFragment_to_modificarFragment)
     }
-
+    /**
+     * Elimina la receta de Firestore
+     *@param recetaId pasa el id de la receta como argumento
+     * Este metodo se ejecuta al pulsar el boton de borrar
+     */
     private fun deleteReceta(recetaId: String) {
         lifecycleScope.launch {
             firestoreManager.deleteReceta(recetaId) { isSuccess, mensajeError ->
                 if (isSuccess) {
-                    loadRecetasFromFirestore() // Recargar la lista después de borrar
+                    loadRecetasFromFirestore()
                 } else {
-                    mensajeError?.let {
-                        // Muestra un mensaje de error o realiza acciones de manejo de errores aquí
+                    mensajeError.let {
+
                     }
                 }
             }
         }
     }
+    /**
+     * Método que se ejecuta cuando la vista es destruida
+     */
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null // Limpieza para evitar fugas de memoria
+        _binding = null
     }
 }

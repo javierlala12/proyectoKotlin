@@ -8,6 +8,9 @@ import com.javiervillaverde.proyectokotlin.core.AuthRes
 import com.javiervillaverde.proyectokotlin.databinding.ActivityRecuperaContrasenaBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+/**
+ * Clase para recuperar la contraseña
+ */
 
 class RecuperaContrasena : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

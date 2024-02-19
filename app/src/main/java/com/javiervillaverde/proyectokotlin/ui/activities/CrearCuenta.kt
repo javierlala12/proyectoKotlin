@@ -9,6 +9,12 @@ import com.javiervillaverde.proyectokotlin.databinding.ActivityCrearCuentaBindin
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+/**
+ * Clase para crear una cuenta
+ * @property eMail Correo electrónico
+ * @property password Contraseña
+ */
+
 class CrearCuenta : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +29,11 @@ class CrearCuenta : AppCompatActivity() {
             }
         }
     }
+    /**
+     * Función para crear una cuenta
+     * @param eMail Correo electrónico
+     * @param password Contraseña
+     */
 
     private fun ActivityCrearCuentaBinding.signUp(eMail: String, password: String) {
         if (!eMail.isNullOrEmpty() && !password.isNullOrEmpty()) {

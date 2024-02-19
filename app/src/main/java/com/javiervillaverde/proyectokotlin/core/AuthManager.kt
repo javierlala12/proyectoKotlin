@@ -29,6 +29,20 @@ sealed class AuthRes<out T> {
 class AuthManager(context: Context) {
     private val firebaseAuth: FirebaseAuth by lazy { Firebase.auth }
 
+    /**
+     * 1. Crear un usuario con correo y contraseña
+     * 2. Iniciar sesión con correo y contraseña
+     * 3. Restablecer contraseña
+     * 4. Cerrar sesión
+     * 5. Obtener el usuario actual
+     * 6. Iniciar sesión con Google
+    * */
+
+    /**
+     * 1. Crear un usuario con correo y contraseña
+     * @param email correo del usuario
+     * @param password contraseña del usuario
+     * */
     suspend fun createUserWithEmailAndPassword(
         email: String,
         password: String
@@ -41,6 +55,11 @@ class AuthManager(context: Context) {
         }
     }
 
+    /**
+     * 2. Iniciar sesión con correo y contraseña
+     *@param email correo del usuario
+     * @param password contraseña del usuario
+     * */
     suspend fun signInWithEmailAndPassword(
         email: String,
         password: String
@@ -53,6 +72,10 @@ class AuthManager(context: Context) {
         }
     }
 
+    /**
+     * 3. Restablecer contraseña
+     * @param email correo del usuario
+     * */
     suspend fun resetPassword(email: String): AuthRes<Unit> {
         return try {
             firebaseAuth.sendPasswordResetEmail(email).await()
@@ -62,10 +85,18 @@ class AuthManager(context: Context) {
         }
     }
 
+    /**
+     * 4. Cerrar sesión
+     * */
+
     fun signOut() {
         firebaseAuth.signOut()
         googleSignInClient.signOut()
     }
+
+    /**
+     * 5. Obtener el usuario actual
+     * */
 
     fun getCurrentUser() = firebaseAuth.currentUser
 
@@ -76,6 +107,10 @@ class AuthManager(context: Context) {
             .build()
         GoogleSignIn.getClient(context, gso)
     }
+
+    /**
+     * 6.Maneja el inicio de sesión con Google
+     * */
 
     fun handleSignInResult(task: Task<GoogleSignInAccount>): AuthRes<GoogleSignInAccount?> {
         return try {
@@ -97,6 +132,10 @@ class AuthManager(context: Context) {
         }
     }
 
+
+    /**
+     * 6. Iniciar sesión con Google
+     * */
     fun signInWithGoogle(googleSignInLauncher: ActivityResultLauncher<Intent>) {
         val signInIntent = googleSignInClient.signInIntent
         googleSignInLauncher.launch(signInIntent)

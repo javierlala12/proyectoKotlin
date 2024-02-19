@@ -26,10 +26,6 @@ class ModificarFragment : Fragment(R.layout.fragment_modificar) {
         binding = FragmentModificarBinding.bind(view)
         firestoreManager = FirestoreManager(requireContext())
         recetaId = arguments?.getString(RECETA_ID)
-        /**
-        if (recetaId != null) {
-        cargarDatosReceta(recetaId!!)
-        }*/
 
         binding.btnGuardar.setOnClickListener {
             lifecycleScope.launch {
@@ -43,29 +39,32 @@ class ModificarFragment : Fragment(R.layout.fragment_modificar) {
     }
 
     /**
-    private fun cargarDatosReceta(recetaId: String) {
-    firestoreManager.getReceta(recetaId) { receta ->
-    receta?.let {
-    with(binding) {
-    nombre.setText(it.tituloReceta)
-    imagenUrl.setText(it.urlImagen)
-    descripcion.setText(it.descripcionReceta)
-    pasos.setText(it.pasos.joinToString("\n"))
-    }
-    }
-    }
-    } */
-
+     * Guarda o modifica una receta en Firestore
+     * Si recetaId es null, se guarda una nueva receta
+     * Si recetaId no es null, se modifica la receta existente
+     * @param recetaId id de la receta
+     * @param tituloReceta titulo de la receta
+     * @param urlImagen url de la imagen de la receta
+     * @param descripcionReceta descripcion de la receta
+     * @param pasos pasos de la receta
+     * @param ingredientes ingredientes de la receta
+     * @param autor autor de la receta
+     * @param usuariosFavoritos lista de usuarios que han marcado la receta como favorita
+     */
     private fun guardarOModificarReceta() {
         val tituloReceta = binding.nombre.text.toString()
         val urlImagen = binding.imagenUrl.text.toString()
         val descripcionReceta = binding.descripcion.text.toString()
         val pasos = binding.pasos.text.toString().lines()
+        val ingredientes = binding.ingredientes.text.toString()
+            .split("\n")
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
         val receta = Receta(
             recetaId = recetaId ?: "",
             tituloReceta = tituloReceta,
             descripcionReceta = descripcionReceta,
-            ingredientes = listOf(), // Asume que defines cómo manejar esto
+            ingredientes = ingredientes, // Asume que defines cómo manejar esto
             pasos = pasos,
             urlImagen = urlImagen,
             autor = firestoreManager.getUserId() ?: "",
@@ -89,7 +88,8 @@ class ModificarFragment : Fragment(R.layout.fragment_modificar) {
                 "tituloReceta" to tituloReceta,
                 "urlImagen" to urlImagen,
                 "descripcionReceta" to descripcionReceta,
-                "pasos" to pasos
+                "pasos" to pasos,
+                "ingredientes" to ingredientes
             )
             firestoreManager.updateReceta(recetaId!!, camposModificados) { exito, _ ->
                 if (exito) {

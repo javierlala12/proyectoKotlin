@@ -3,34 +3,37 @@ package com.javiervillaverde.proyectokotlin.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.javiervillaverde.proyectokotlin.databinding.ViewRecetasFavoritasBinding
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.launch
-import androidx.lifecycle.lifecycleScope
+import com.javiervillaverde.proyectokotlin.R
+import com.javiervillaverde.proyectokotlin.databinding.ViewRecetasFavoritasBinding
 import com.javiervillaverde.proyectokotlin.models.Receta
-import com.javiervillaverde.proyectokotlin.ui.fragments.FavoritosFragment
 
-// Asegúrate de que la clase RecetasAdapterFavoritos tenga los parámetros correctos
+/**
+ * Adaptador para el RecyclerView de recetas favoritas
+ * @property recetas Lista de recetas a mostrar
+ * @property onRecetaClicked Función que se ejecuta al hacer click en una receta
+ */
+
 class RecetasAdapterFavoritos(
-    private val recetas: List<Receta>,
-    private val context: FavoritosFragment,
-    private val listener: (Receta) -> Unit
+    private var recetas: List<Receta>,
+    private val onRecetaClicked: (String) -> Unit,
 ) : RecyclerView.Adapter<RecetasAdapterFavoritos.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ViewRecetasFavoritasBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(receta: Receta) {
-            binding.nombre.text = receta.tituloReceta
-            binding.root.setOnClickListener { listener(receta) }
-
-            // Usar lifecycleScope del Fragmento para cargar imágenes
-            context.lifecycleScope.launch {
-                Glide.with(context.requireContext())
+            with(binding) {
+                nombre.text = receta.tituloReceta
+                Glide.with(imagenReceta.context)
                     .load(receta.urlImagen)
-                    .into(binding.imagenTarea)
+                    .placeholder(R.drawable.ic_image)
+                    .error(R.drawable.ic_broken_image)
+                    .into(imagenReceta)
+                }
+                itemView.setOnClickListener { onRecetaClicked(receta.recetaId) }
             }
         }
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ViewRecetasFavoritasBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -41,5 +44,11 @@ class RecetasAdapterFavoritos(
         holder.bind(recetas[position])
     }
 
-    override fun getItemCount() = recetas.size
+    override fun getItemCount(): Int = recetas.size
+
+    fun updateRecetas(newRecetas: List<Receta>) {
+        recetas = newRecetas
+        notifyDataSetChanged()
+    }
 }
+

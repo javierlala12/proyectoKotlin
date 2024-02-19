@@ -15,4 +15,5 @@
     <string name="crear_cuenta">Crear cuenta</string>
     <string name="registrarse">Registrarse</string>
     <string name="ya_tienes_cuenta_prompt">Ya tienes cuenta. Inicia Sesión</string>
+    <item name="textUserEmail" type="id" />
 </resources>

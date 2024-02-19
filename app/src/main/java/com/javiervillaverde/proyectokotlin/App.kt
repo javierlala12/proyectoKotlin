@@ -4,7 +4,6 @@ import android.app.Application
 import com.javiervillaverde.proyectokotlin.core.AuthManager
 import com.javiervillaverde.proyectokotlin.core.FirestoreManager
 
-
 class App: Application() {
     lateinit var auth: AuthManager
     lateinit var firestore: FirestoreManager

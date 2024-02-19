@@ -12,6 +12,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.GoogleAuthProvider
 import com.javiervillaverde.proyectokotlin.core.AuthManager
 import com.javiervillaverde.proyectokotlin.core.AuthRes
+import com.javiervillaverde.proyectokotlin.core.FirestoreManager
 import com.javiervillaverde.proyectokotlin.databinding.ActivityLoginBinding
 import com.javiervillaverde.proyectokotlin.ui.activities.CrearCuenta
 import com.javiervillaverde.proyectokotlin.ui.activities.MainActivity
@@ -35,6 +36,12 @@ class LoginActivity : AppCompatActivity() {
         setupUIListeners()
     }
 
+    /**
+     * Método que se encarga de configurar el inicio de sesión con Google
+     * Se encarga de configurar el botón de inicio de sesión con Google
+     * Se encarga de manejar el resultado de la autenticación con Google
+     */
+
     private fun setupGoogleSignIn() {
         val googleSignLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -46,8 +53,17 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Métodos que se encarga de manejar el resultado de la autenticación con Google
+     * Se encarga de manejar el resultado de la autenticación con Google
+     * Si la autenticación es exitosa, se obtiene el usuario de Firebase y se guarda en Firestore
+     * Si la autenticación es exitosa y el usuario ya existe en Firestore, se lanza la actividad principal
+     * Si la autenticación es exitosa y el usuario no existe en Firestore, se guarda el usuario en Firestore y se lanza la actividad principal
+     * Si la autenticación no es exitosa, se muestra un mensaje de error
+     */
     private fun handleGoogleSignInResult(result: androidx.activity.result.ActivityResult) {
-        val account = auth.handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(result.data))
+        val account =
+            auth.handleSignInResult(GoogleSignIn.getSignedInAccountFromIntent(result.data))
         if (account.isSuccess()) {
             handleSuccessfulGoogleSignIn(account as AuthRes.Success<GoogleSignInAccount>)
         } else if (account.isError()) {
@@ -56,20 +72,53 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun handleSuccessfulGoogleSignIn(account: AuthRes.Success<GoogleSignInAccount>) {
-        val credential = GoogleAuthProvider.getCredential(account.data?.idToken, null)
+        val credential = GoogleAuthProvider.getCredential(account.data.idToken, null)
         lifecycleScope.launch {
-            when (val firebaseUser = auth.googleSignInCredential(credential)) {
-                is AuthRes.Success -> launchMainActivity()
-                is AuthRes.Error -> showSnackbar("Error al iniciar sesión")
+            when (val firebaseUserResult = auth.googleSignInCredential(credential)) {
+                is AuthRes.Success -> {
+                    firebaseUserResult.data?.let { firebaseUser ->
+                        val firestoreManager = FirestoreManager(this@LoginActivity)
+                        firestoreManager.getUsuarioPorId(firebaseUser.uid) { usuario ->
+                            if (usuario == null) {
+                                firestoreManager.saveUserInformation(firebaseUser) { success, message ->
+                                    if (success) {
+                                        launchMainActivity()
+                                    } else {
+                                        showSnackbar("Error al guardar la información del usuario: $message")
+                                    }
+                                }
+                            } else {
+                                launchMainActivity()
+                            }
+                        }
+                    }
+                }
+
+                is AuthRes.Error -> showSnackbar("Error al iniciar sesión con Google: ${firebaseUserResult.errorMessage}")
             }
         }
     }
+
+    /**
+     * Método que se encarga de verificar si el usuario ya está logueado
+     * Se encarga de verificar si el usuario ya está logueado
+     * Si el usuario ya está logueado, se lanza la actividad principal
+     */
+
 
     private fun checkIfUserIsLoggedIn() {
         if (auth.getCurrentUser() != null) {
             launchMainActivity()
         }
     }
+
+    /**
+     * Método que se encarga de configurar los listeners de la interfaz de usuario
+     * Se encarga de configurar los listeners de la interfaz de usuario
+     * Se encarga de manejar el evento de clic en el botón de inicio de sesión
+     * Se encarga de manejar el evento de clic en el botón de registro
+     * Se encarga de manejar el evento de clic en el botón de recuperar contraseña
+     */
 
     private fun setupUIListeners() {
         with(binding) {
@@ -88,21 +137,47 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método que se encarga de iniciar sesión con correo y contraseña
+     * Se encarga de iniciar sesión con correo y contraseña
+     * Si el correo y la contraseña no están vacíos, se inicia sesión con correo y contraseña
+     * Si la autenticación es exitosa, se obtiene el usuario de Firebase y se guarda en Firestore
+     * Si la autenticación es exitosa y el usuario ya existe en Firestore, se lanza la actividad principal
+     * Si la autenticación es exitosa y el usuario no existe en Firestore, se guarda el usuario en Firestore y se lanza la actividad principal
+     * Si la autenticación no es exitosa, se muestra un mensaje de error
+     */
+
     private fun emailPassSignIn(email: String, password: String) {
         if (email.isNotBlank() && password.isNotBlank()) {
             lifecycleScope.launch {
                 when (val result = auth.signInWithEmailAndPassword(email, password)) {
-                    is AuthRes.Success -> launchMainActivity()
-                    is AuthRes.Error -> showSnackbar("Error al iniciar sesión")
+                    is AuthRes.Success -> {
+                        result.data?.let { firebaseUser ->
+                            val firestoreManager = FirestoreManager(this@LoginActivity)
+                            firestoreManager.saveUserInformation(firebaseUser) { success, message ->
+                                if (success) {
+                                    launchMainActivity()
+                                } else {
+                                    showSnackbar(message)
+                                }
+                            }
+                        }
+                    }
+
+                    is AuthRes.Error -> showSnackbar("Error al iniciar sesión: ${result.errorMessage}")
                 }
             }
         }
     }
 
+    /**
+     * Método que se encarga de lanzar la actividad principal
+     */
     private fun launchMainActivity() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
+
 
     private fun showSnackbar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()

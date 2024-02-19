@@ -6,6 +6,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.javiervillaverde.proyectokotlin.R
 
+/**
+ * Clase para la principal
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,12 +16,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-
-        // Configura el NavHostFragment como contenedor de navegación
+        /**
+         * Conecta el controlador de navegación con el BottomNavigationView
+         */
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-
-        // Conecta el BottomNavigationView al controlador de navegación
         bottomNav.setupWithNavController(navController)
     }
 }

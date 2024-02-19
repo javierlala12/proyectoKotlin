@@ -5,29 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.FavoritosFragment">
+    tools:context=".ui.fragments.BuscadorFragment">
 
     <TextView
         android:id="@+id/titulo"
         style="@style/fuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Busqueda"
+        android:text="Búsqueda de Recetas"
         android:textColor="@color/colorOnPrimary"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/etBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titulo"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Introduce el nombre o ingrediente"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        android:layout_below="@id/etBuscar"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_below="@id/titulo"
-        android:background="@color/colorPrimary"
+        android:layout_height="692dp"
+        android:layout_below="@id/btnBuscar"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
 
 </RelativeLayout>

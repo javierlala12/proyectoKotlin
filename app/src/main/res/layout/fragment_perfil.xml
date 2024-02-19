@@ -1,44 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.FavoritosFragment">
+    tools:context=".ui.fragments.PerfilFragment">
 
     <TextView
         android:id="@+id/titulo"
         style="@style/fuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Mi perfil"
         android:textColor="@color/colorOnPrimary"
-        android:textSize="32sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp" />
+        android:textSize="32sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageUserProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_below="@id/titulo"
-        android:background="@color/colorPrimary"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="16dp"
+        android:src="@mipmap/ic_launcher" />
 
-    />
+    <TextView
+        android:id="@+id/Email"
+        style="@style/fuente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageUserProfile"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Email del usuario"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="20sp"
+
+        />
+
+    <TextView
+        android:id="@+id/textUserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Email"
+        android:layout_toEndOf="@id/iconoEmail"
+        android:autoLink="email"
+        android:clickable="true"
+        android:drawablePadding="8dp"
+        android:focusable="true"
+        android:text="Email"
+        android:background="@color/colorOnPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/iconoEmail"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_below="@id/Email"
+        android:layout_marginTop="-18dp"
+        android:src="@drawable/email" />
+
+    <TextView
+        android:id="@+id/username"
+        style="@style/fuente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textUserEmail"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Nombre de Usuario"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Nombre de Usuario"
+        android:textColor="@color/colorOnPrimary"
+        android:textColorHint="@color/black" />
+
+    <TextView
+        android:id="@+id/editarImagen"
+        style="@style/fuente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editUserName"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Editar Imagen de Perfil"
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editUserImageUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editarImagen"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="URL de la Imagen de Perfil"
+        android:textColor="@color/colorOnPrimary"
+        android:textColorHint="@color/black" />
+
+    <Button
+        android:id="@+id/btnUpdateProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editUserImageUrl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Actualizar Perfil" />
 
     <Button
         android:id="@+id/btnSignOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_out"
+        android:layout_below="@id/btnUpdateProfile"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorAccent"/>
-
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/inicioSesion"
+        android:text="@string/sign_out"
+        android:textColor="@color/colorPrimary" />
 
 </RelativeLayout>
